@@ -50,7 +50,7 @@ class CartProduct(models.Model):
     # models.models.ManyToManyField("app.Model", verbose_name=_(""))
 
     def __str__(self):
-        return f'{self.cart.id}-{self.cart.quantity}'
+        return f'{self.cart.id}-{self.quantity}'
 
 
 class Order(models.Model):
