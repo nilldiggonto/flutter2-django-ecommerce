@@ -1,15 +1,46 @@
+import 'package:flower_app/state/productState.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   // const HomeScreen({ Key? key }) : super(key: key);
   static const routename = '/home-screen';
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool _init = true;
+  bool _isLoading = false;
+  @override
+  void didChangeDependencies() async {
+    if (_init) {
+      _isLoading = await Provider.of<ProductState>(context).getProducts();
+      setState(() {});
+    }
+    _init = false;
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Flower Shop'),
-      ),
-    );
+    if (!_isLoading)
+      return Scaffold(
+          appBar: AppBar(
+            title: Text('Flower Shop'),
+          ),
+          body: Center(
+            child: Text('Something is wrong'),
+          ));
+    else
+      return Scaffold(
+          appBar: AppBar(
+            title: Text('Flower Shop'),
+          ),
+          body: Center(
+            child: Text('this is body'),
+          ));
   }
 }
