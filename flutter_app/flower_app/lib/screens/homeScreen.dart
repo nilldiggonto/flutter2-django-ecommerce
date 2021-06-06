@@ -39,15 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ));
     else
       return Scaffold(
-        appBar: AppBar(
-          title: Text('Flower Shop'),
-        ),
-        body: ListView.builder(
-          itemCount: product.length,
-          itemBuilder: (context, index) => Container(
-            child: Text(product[index].title!),
+          appBar: AppBar(
+            title: Text('Flower Shop'),
           ),
-        ),
-      );
+          body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 3 / 2,
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: product.length,
+            itemBuilder: (context, index) => Container(
+              child: Text(product[index].title!),
+            ),
+          ));
   }
 }
