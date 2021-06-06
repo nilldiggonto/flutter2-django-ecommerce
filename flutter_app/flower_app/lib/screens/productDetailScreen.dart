@@ -16,7 +16,42 @@ class ProductDetailScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
-        child: Text(product.title!),
+        child: ListView(children: [
+          Image.network(
+            "http://192.168.137.56:8000${product.image}",
+            fit: BoxFit.cover,
+            height: 450,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Market Price:\$ ${product.marketPrice.toString()}'),
+                  // Text(,
+                  // Text('Sell Price:'),
+                  Text('Sell Price:\$ ${product.sellingPrice.toString()}'),
+                ],
+              ),
+              ElevatedButton.icon(
+                // color:Colors.amber,
+                onPressed: () {},
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Add to Cart',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ],
+          ),
+          Text('Description: ${product.description}'),
+        ]),
       ),
     );
   }
