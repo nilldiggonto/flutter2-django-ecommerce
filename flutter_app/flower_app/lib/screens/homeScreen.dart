@@ -16,7 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() async {
     if (_init) {
+      // print('something');
       _isLoading = await Provider.of<ProductState>(context).getProducts();
+      // print(_isLoading);
       setState(() {});
     }
     _init = false;
@@ -26,21 +28,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<ProductState>(context).products;
     if (!_isLoading)
       return Scaffold(
           appBar: AppBar(
             title: Text('Flower Shop'),
           ),
           body: Center(
-            child: Text('Something is wrong'),
+            child: Text('Something is wrong right'),
           ));
     else
       return Scaffold(
-          appBar: AppBar(
-            title: Text('Flower Shop'),
+        appBar: AppBar(
+          title: Text('Flower Shop'),
+        ),
+        body: ListView.builder(
+          itemCount: product.length,
+          itemBuilder: (context, index) => Container(
+            child: Text(product[index].title!),
           ),
-          body: Center(
-            child: Text('this is body'),
-          ));
+        ),
+      );
   }
 }
