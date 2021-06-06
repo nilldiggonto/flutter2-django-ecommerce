@@ -1,4 +1,5 @@
 import 'package:flower_app/screens/homeScreen.dart';
+import 'package:flower_app/screens/productDetailScreen.dart';
 import 'package:flower_app/state/productState.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           HomeScreen.routename: (context) => HomeScreen(),
+          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
         },
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flower_app/state/productState.dart';
+import 'package:flower_app/widgets/singleProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,8 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSpacing: 10,
             ),
             itemCount: product.length,
-            itemBuilder: (context, index) => Container(
-              child: Text(product[index].title!),
+            itemBuilder: (context, index) => SingleProduct(
+              id: product[index].id,
+              title: product[index].title,
+              image: product[index].image,
+              favourite: product[index].favourite,
             ),
           ));
   }

@@ -35,4 +35,8 @@ class ProductState with ChangeNotifier {
   List<Product> get products {
     return [..._products];
   }
+
+  Product singleProduct(id) {
+    return _products.firstWhere((element) => element.id == id);
+  }
 }

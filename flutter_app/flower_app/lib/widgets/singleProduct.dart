@@ -1,3 +1,4 @@
+import 'package:flower_app/screens/productDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 class SingleProduct extends StatelessWidget {
@@ -20,8 +21,24 @@ class SingleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
       // header: GridTileBar(),
-      child: Image.asset(""),
-      footer: GridTileBar(),
+      child: GestureDetector(
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(ProductDetailScreen.routeName, arguments: id);
+          },
+          child: Image.network("http://192.168.137.56:8000$image",
+              fit: BoxFit.cover)),
+      footer: GridTileBar(
+        backgroundColor: Colors.black54,
+        title: Text(title!),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            favourite! ? Icons.favorite : Icons.favorite_border,
+            color: Colors.red,
+          ),
+        ),
+      ),
     );
   }
 }
