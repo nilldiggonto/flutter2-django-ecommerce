@@ -1,5 +1,8 @@
+import 'package:flower_app/screens/homeScreen.dart';
 import 'package:flower_app/screens/registerScreen.dart';
+import 'package:flower_app/state/userState.dart';
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   // const LoginScreen({Key? key}) : super(key: key);
@@ -13,14 +16,36 @@ class _LoginScreenState extends State<LoginScreen> {
   String _username = '';
   String _password = '';
   final _form = GlobalKey<FormState>();
-  void _loginNow() {
+  void _loginNow() async {
     var isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
     }
     _form.currentState!.save();
-    print(_username);
-    print(_password);
+    bool isToken = await Provider.of<UserState>(context, listen: false)
+        .loginNow(_username, _password);
+
+    if (isToken) {
+      Navigator.of(context).pushReplacementNamed(HomeScreen.routename);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Make sure username and pass right'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('ok'),
+                ),
+              ],
+            );
+          });
+    }
+    // print(_username);
+    // print(_password);
   }
 
   @override

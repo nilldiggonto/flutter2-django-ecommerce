@@ -1,9 +1,22 @@
 import 'package:flower_app/screens/favouriteScreen.dart';
 import 'package:flower_app/screens/homeScreen.dart';
+import 'package:flower_app/screens/loginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
-class BurgerMenu extends StatelessWidget {
-  const BurgerMenu({Key? key}) : super(key: key);
+class BurgerMenu extends StatefulWidget {
+  // const BurgerMenu({Key? key}) : super(key: key);
+  @override
+  _BurgerMenuState createState() => _BurgerMenuState();
+}
+
+class _BurgerMenuState extends State<BurgerMenu> {
+  final storage = new LocalStorage('userToken');
+
+  void _logoutNow() async {
+    await storage.clear();
+    Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +47,17 @@ class BurgerMenu extends StatelessWidget {
               color: Colors.red,
             ),
             title: Text('Favorite'),
+          ),
+          Spacer(),
+          ListTile(
+            onTap: () {
+              _logoutNow();
+            },
+            trailing: Icon(
+              Icons.logout,
+              color: Colors.blue,
+            ),
+            title: Text('logout'),
           )
         ],
       ),

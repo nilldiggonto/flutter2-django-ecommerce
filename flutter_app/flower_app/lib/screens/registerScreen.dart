@@ -1,5 +1,7 @@
 import 'package:flower_app/screens/loginScreen.dart';
+import 'package:flower_app/state/userState.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   // const RegisterScreen({Key? key}) : super(key: key);
@@ -15,14 +17,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _confPassword = '';
 
   final _form = GlobalKey<FormState>();
-  _regiseterNow() {
+  _regiseterNow() async {
     var isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
     }
     _form.currentState!.save();
-    print(_username);
-    print(_password);
+    // print(_username);
+    // print(_password);
+    bool isRegister = await Provider.of<UserState>(context, listen: false)
+        .RegisterNow(_username, _password);
+
+    if (isRegister) {
+      Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Username Already Exists'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('ok'),
+                ),
+              ],
+            );
+          });
+    }
   }
 
   @override
@@ -98,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onPressed: () {
                               _regiseterNow();
                             },
-                            child: Text('Login'),
+                            child: Text('Registration'),
                           ),
                           TextButton(
                             onPressed: () {

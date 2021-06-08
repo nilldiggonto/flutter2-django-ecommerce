@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('Flower Shop'),
           ),
           body: Center(
-            child: Text('Something is wrong right'),
+            child: Text('WAIT SERVER IS LOADING'),
           ));
     else
       return Scaffold(
