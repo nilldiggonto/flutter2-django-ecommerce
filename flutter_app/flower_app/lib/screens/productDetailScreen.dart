@@ -18,7 +18,7 @@ class ProductDetailScreen extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: ListView(children: [
           Image.network(
-            "http://192.168.137.56:8000${product.image}",
+            "http://172.16.3.253:8000${product.image}",
             fit: BoxFit.cover,
             height: 450,
           ),

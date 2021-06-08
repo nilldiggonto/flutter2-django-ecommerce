@@ -1,5 +1,7 @@
 import 'package:flower_app/screens/productDetailScreen.dart';
+import 'package:flower_app/state/productState.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SingleProduct extends StatelessWidget {
   final int? id;
@@ -26,13 +28,15 @@ class SingleProduct extends StatelessWidget {
             Navigator.of(context)
                 .pushNamed(ProductDetailScreen.routeName, arguments: id);
           },
-          child: Image.network("http://192.168.137.56:8000$image",
+          child: Image.network("http://172.16.3.253:8000$image",
               fit: BoxFit.cover)),
       footer: GridTileBar(
         backgroundColor: Colors.black54,
         title: Text(title!),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Provider.of<ProductState>(context, listen: false).favoriteBtn(id!);
+          },
           icon: Icon(
             favourite! ? Icons.favorite : Icons.favorite_border,
             color: Colors.red,
