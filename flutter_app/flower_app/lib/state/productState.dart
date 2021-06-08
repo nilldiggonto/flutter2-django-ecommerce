@@ -8,7 +8,7 @@ class ProductState with ChangeNotifier {
   List<Product> _products = [];
 
   Future<bool> getProducts() async {
-    var url = Uri.parse('http://172.16.3.253:8000/api/v1/products/');
+    var url = Uri.parse('http://192.168.31.27:8000/api/v1/products/');
     try {
       http.Response response = await http.get(url, headers: {
         'Authorization': 'token 43c274621fcd8e19f9d5a016aeb5de422d156737'
@@ -45,7 +45,7 @@ class ProductState with ChangeNotifier {
   }
 
   Future<void> favoriteBtn(int id) async {
-    var url = Uri.parse('http://172.16.3.253:8000/api/v1/favorite/');
+    var url = Uri.parse('http://192.168.31.27:8000/api/v1/favorite/');
     try {
       http.Response response = await http.post(url,
           body: json.encode({

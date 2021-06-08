@@ -28,7 +28,7 @@ class SingleProduct extends StatelessWidget {
             Navigator.of(context)
                 .pushNamed(ProductDetailScreen.routeName, arguments: id);
           },
-          child: Image.network("http://172.16.3.253:8000$image",
+          child: Image.network("http://192.168.31.27:8000$image",
               fit: BoxFit.cover)),
       footer: GridTileBar(
         backgroundColor: Colors.black54,
