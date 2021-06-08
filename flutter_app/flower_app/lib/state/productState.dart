@@ -36,6 +36,10 @@ class ProductState with ChangeNotifier {
     return [..._products];
   }
 
+  List<Product> get favorites {
+    return _products.where((element) => element.favourite == true).toList();
+  }
+
   Product singleProduct(id) {
     return _products.firstWhere((element) => element.id == id);
   }
