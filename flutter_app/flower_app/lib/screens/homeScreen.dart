@@ -1,4 +1,5 @@
 import 'package:flower_app/state/productState.dart';
+import 'package:flower_app/widgets/bureger_menu.dart';
 import 'package:flower_app/widgets/singleProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ));
     else
       return Scaffold(
+          drawer: BurgerMenu(),
           appBar: AppBar(
             title: Text('Flower Shop'),
           ),

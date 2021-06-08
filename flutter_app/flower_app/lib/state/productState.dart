@@ -31,6 +31,15 @@ class ProductState with ChangeNotifier {
     }
   }
 
+  //get all products
+  List<Product> get products {
+    return [..._products];
+  }
+
+  Product singleProduct(id) {
+    return _products.firstWhere((element) => element.id == id);
+  }
+
   Future<void> favoriteBtn(int id) async {
     var url = Uri.parse('http://172.16.3.253:8000/api/v1/favorite/');
     try {
@@ -42,11 +51,15 @@ class ProductState with ChangeNotifier {
             'Content-Type': 'application/json',
             'Authorization': 'token 43c274621fcd8e19f9d5a016aeb5de422d156737'
           });
-      var data = json.decode(response.body);
+      print(response);
+      // var data = jsonR.decode(response.body);
+      getProducts();
+      // print(data);
+
       // if(data['error']==false)
 
-      print(data);
-      notifyListeners();
+      // print(data);
+      // notifyListeners();
       // print(response.body);
       // _products = temp;
       // return true;
@@ -56,14 +69,5 @@ class ProductState with ChangeNotifier {
       print('e getproducts');
       // return false;
     }
-  }
-
-  //get all products
-  List<Product> get products {
-    return [..._products];
-  }
-
-  Product singleProduct(id) {
-    return _products.firstWhere((element) => element.id == id);
   }
 }

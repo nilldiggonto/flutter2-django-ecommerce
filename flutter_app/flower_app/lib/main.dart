@@ -1,3 +1,4 @@
+import 'package:flower_app/screens/favouriteScreen.dart';
 import 'package:flower_app/screens/homeScreen.dart';
 import 'package:flower_app/screens/productDetailScreen.dart';
 import 'package:flower_app/state/productState.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         routes: {
           HomeScreen.routename: (context) => HomeScreen(),
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+          FavoriteScreen.routeName: (context) => FavoriteScreen(),
         },
       ),
     );
