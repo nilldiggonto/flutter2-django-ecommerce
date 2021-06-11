@@ -7,4 +7,5 @@ urlpatterns = [
     path('favorite/',FavoriteView.as_view(),name='fav-view'),
     path('login/',obtain_auth_token),
     path('register/',RegisterView.as_view(),name='register-view'),
+    path('cart/',CartView.as_view(),name='product-cart'),
 ]

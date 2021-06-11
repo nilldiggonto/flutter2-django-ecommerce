@@ -60,3 +60,24 @@ class RegisterView(APIView):
             return Response({'error':False})
         return Response({'error':True})
 
+class CartView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
+    def get(self,request):
+        user = request.user
+        try:
+            cart_obj = Cart.objects.filter(user=user).filter(isComplete=False)
+            data = []
+            cart_serializer = CartSerializers(cart_obj,many=True)
+            for cart in cart_serializer.data:
+                cart_product_obj = CartProduct.objects.filter(cart=cart['id'])
+                cart_product_obj_serializer = CartProductSerializer(cart_product_obj,many=True)
+                cart['cartproducts'] = cart_product_obj_serializer.data
+                data.append(cart)
+
+            response_msg = {'error':False,'data':data}
+        except:
+            response_msg = {'error':True,'data':'nothing'}
+        return Response(response_msg) 
+

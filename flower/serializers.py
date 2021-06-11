@@ -24,3 +24,13 @@ class UserSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user)
         return user
         
+class CartSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = "__all__"
+
+class CartProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartProduct
+        fields = "__all__"
+        depth = 1

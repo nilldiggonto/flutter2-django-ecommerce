@@ -5,6 +5,7 @@ import 'package:flower_app/screens/homeScreen.dart';
 import 'package:flower_app/screens/loginScreen.dart';
 import 'package:flower_app/screens/productDetailScreen.dart';
 import 'package:flower_app/screens/registerScreen.dart';
+import 'package:flower_app/state/cartState.dart';
 import 'package:flower_app/state/productState.dart';
 import 'package:flower_app/state/userState.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ProductState()),
         ChangeNotifierProvider(create: (context) => UserState()),
+        ChangeNotifierProvider(create: (context) => CartState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
